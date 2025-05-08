@@ -142,3 +142,31 @@ resource "aws_route_table_association" "private_2" {
   subnet_id      = aws_subnet.private_2.id
   route_table_id = aws_route_table.private.id
 }
+
+# import {
+#   to = aws_subnet.extra_subnet
+#   id = "subnet-035a7283f66a96d0d"
+# }
+
+# resource "aws_subnet" "extra_subnet" {
+#   vpc_id            = "vpc-0f49db40e4d36489c"
+#   cidr_block        = "192.168.1.96/28"
+#   availability_zone = "ap-southeast-2a"
+#   tags = {
+#     Name = "maria-iac-lab-public-subnet-3"
+#   }
+# }
+
+# resource "aws_subnet" "public_subnet_3" {
+#   vpc_id            = "vpc-0f49db40e4d36489c"
+#   cidr_block        = "192.168.1.96/28"
+#   availability_zone = "ap-southeast-2a"
+#   tags = {
+#     Name = "maria-iac-lab-public-subnet-3"
+#   }
+# }
+
+# moved {
+#   from = aws_subnet.extra_subnet
+#   to   = aws_subnet.public_subnet_3
+# }
