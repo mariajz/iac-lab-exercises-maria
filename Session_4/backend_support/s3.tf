@@ -1,8 +1,9 @@
 resource "aws_s3_bucket" "example" {
   bucket = "${var.prefix}-bucket"
-  lifecycle {
-    prevent_destroy = true
-  }
+  # lifecycle {
+  #   prevent_destroy = true
+  # }
+  force_destroy = true
 
   tags = {
     Name = "${var.prefix}-tfstate"
