@@ -1,7 +1,7 @@
 resource "aws_security_group" "lb_sg" {
   name        = "${var.prefix}-lb-sg"
   description = "Security group for ALB to allow HTTP traffic and talk to ECS"
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = module.vpc.vpc_id
 
   ingress {
     description = "Allow HTTP traffic from internet"
@@ -46,7 +46,7 @@ resource "aws_lb_target_group" "lb_tg" {
   name        = format("%s-lb-target-group", var.prefix)
   port        = 8000
   protocol    = "HTTP"
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = module.vpc.vpc_id
   target_type = "ip"
   health_check {
     healthy_threshold   = "5"

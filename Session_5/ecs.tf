@@ -72,7 +72,7 @@ resource "aws_ecs_task_definition" "this" {
 
 resource "aws_security_group" "ecs" {
   name   = format("%s-ecs-sg", var.prefix)
-  vpc_id = aws_vpc.main.id
+  vpc_id = module.vpc.vpc_id
 
   ingress {
     description     = "Allow ALB access to ECS on port 8000"
