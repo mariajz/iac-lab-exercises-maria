@@ -35,12 +35,12 @@ resource "aws_ecs_service" "this" {
 
   network_configuration {
     security_groups  = [aws_security_group.ecs.id]
-    subnets          = aws_subnet.private[*].id
+    subnets          = var.private_subnet_ids
     assign_public_ip = false
   }
 
   load_balancer {
-    target_group_arn = aws_lb_target_group.lb_tg.arn
+    target_group_arn = var.alb_target_group_arn
     container_name   = "example_app"
     container_port   = 8000
   }
@@ -72,14 +72,14 @@ resource "aws_ecs_task_definition" "this" {
 
 resource "aws_security_group" "ecs" {
   name   = format("%s-ecs-sg", var.prefix)
-  vpc_id = module.vpc.vpc_id
+  vpc_id = var.vpc_id
 
   ingress {
     description     = "Allow ALB access to ECS on port 8000"
     from_port       = 8000
     to_port         = 8000
     protocol        = "tcp"
-    security_groups = [aws_security_group.lb_sg.id]
+    security_groups = [var.alb_security_group_id]
   }
 
   egress {
