@@ -1,3 +1,5 @@
-region   = "ap-southeast-2"
-prefix   = "maria-iac-lab"
-vpc_cidr = "192.168.1.0/25"
+region      = "ap-southeast-2"
+prefix      = "maria-iac-lab"
+vpc_cidr    = "192.168.1.0/25"
+db_username = "postgres"
+db_name     = "postgres"

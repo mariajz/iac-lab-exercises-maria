@@ -12,3 +12,13 @@ variable "vpc_cidr" {
   type        = string
   description = "VPC CIDR block"
 }
+
+variable "db_username" {
+  type        = string
+  description = "Database username"
+}
+
+variable "db_name" {
+  type        = string
+  description = "Database name"
+}
